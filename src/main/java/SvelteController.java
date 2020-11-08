@@ -48,13 +48,17 @@ public class SvelteController {
 
     @GET
     public Uni<Response> get(@Context UriInfo uri, @Context HttpHeaders headers) throws MalformedURLException {
-
-        HttpRequest<Buffer> buffer = client.get(getPathAndQuery(uri));
+        String location = getPathAndQuery(uri);
+        HttpRequest<Buffer> buffer = client.get(location);
         MultiMap requestHeaders = buffer.headers();
 
+        System.out.println("###########################################");
+        System.out.println(location);
         headers.getRequestHeaders().forEach((headerName,values)->{
             values.forEach((value)->{
-                requestHeaders.set(headerName, value);
+                System.out.println(headerName+": "+value);
+                if(!"Accept-Encoding".equals(headerName))
+                    requestHeaders.set(headerName, value);
             });
         });
 
