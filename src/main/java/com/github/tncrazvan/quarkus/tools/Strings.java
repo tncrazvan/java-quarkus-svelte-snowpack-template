@@ -71,8 +71,8 @@ public interface Strings {
             data = data.replaceAll("\\+", "%2B");
             data = URLDecoder.decode(data, "utf-8");
         } catch (final UnsupportedEncodingException e) {
-         e.printStackTrace(System.out);
-      }
+            e.printStackTrace(System.out);
+        }
       return data;
    }
     

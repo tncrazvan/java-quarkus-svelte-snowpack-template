@@ -52,12 +52,15 @@ public class SvelteController {
         HttpRequest<Buffer> buffer = client.get(location);
         MultiMap requestHeaders = buffer.headers();
 
-        System.out.println("###########################################");
-        System.out.println(location);
+        //System.out.println("###########################################");
+        //System.out.println(location);
         headers.getRequestHeaders().forEach((headerName,values)->{
             values.forEach((value)->{
-                System.out.println(headerName+": "+value);
-                if(!"Accept-Encoding".equals(headerName))
+                //System.out.println(headerName+": "+value);
+                if(
+                    !"Accept-Encoding".equals(headerName)
+                    && "Accept-Language".equals(headerName)
+                )
                     requestHeaders.set(headerName, value);
             });
         });
